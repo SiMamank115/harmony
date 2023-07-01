@@ -1,5 +1,5 @@
 {
-  "name": "harmony2",
+  "name": "harmony",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,9 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@auth0/nextjs-auth0": "^2.6.3",
+    "@supabase/supabase-js": "^2.26.0",
     "autoprefixer": "10.4.14",
     "eslint": "8.43.0",
     "eslint-config-next": "13.4.7",
+    "jsonwebtoken": "^9.0.0",
     "next": "13.4.7",
     "postcss": "8.4.24",
     "react": "18.2.0",
