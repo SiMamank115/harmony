@@ -15,7 +15,7 @@ export const SupabaseProvider = ({ children }) => {
         if (!supa) {
             (async () => {
                 try {
-                    if (!isLoading) {
+                    if (!isLoading && user?.accessToken) {
                         const supabase = getSupabase(user.accessToken);
                         if (supabase && !error) {
                             supabase.rpc("check_connection").then((e) => {
