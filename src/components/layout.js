@@ -1,11 +1,11 @@
 import Navbar from "./navbar";
-import { Raleway } from 'next/font/google'
-const raleway = Raleway({ subsets: ['latin'] })
-export default function Layout({ children }) {
+import { Poppins } from "next/font/google";
+const poppins = Poppins({ subsets: ["latin"], weight : ["100","200","300","400","500","600","700","800","900"] });
+export default function Layout({ children, option }) {
     return (
-        <main className={raleway.className}>
-            <Navbar />
-            <div className="container mx-auto">{children}</div>
+        <main className={poppins.className}>
+            <Navbar {...(option?.navbar ?? "")} />
+            {children}
         </main>
     );
 }

@@ -1,16 +1,10 @@
 // pages/index.js
-
-import { withPageAuthRequired } from "@auth0/nextjs-auth0";
-import Link from "next/link";
-import { useContext, useEffect, useState } from "react";
-import { SupabaseContext } from "@/components/supabase";
-import { useRouter } from "next/router";
 import Layout from "@/components/layout";
 
 const Index = () => {
     return (
-        <Layout>
-            <p>LMAO</p>
+        <Layout option={{ navbar: { active: 'home' } }}>
+            <div className="hero w-full bg-[url('/hero-image.jpg')] bg-cover bg-center min-h-[calc(100vh-var(--nav-height))]"></div>
         </Layout>
     );
 };

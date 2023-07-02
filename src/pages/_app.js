@@ -6,7 +6,6 @@ import "@/styles/globals.css";
 import { SupabaseProvider } from "@/components/supabase";
 
 const App = ({ Component, pageProps }) => {
-    console.log("App load");
     return (
         <UserProvider>
             <SupabaseProvider>

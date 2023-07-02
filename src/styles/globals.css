@@ -2,3 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+    --nav-height : 70px;
+}
+.link-nav > [data-active="true"] {
+    @apply text-mint;
+}
