@@ -3,7 +3,13 @@
 @tailwind utilities;
 
 :root {
+    --default-bg : "#1F2D3D";
+    --default-text : "#F8F9FA";
     --nav-height: 70px;
+}
+.dark {
+    --default-text : "#1F2D3D";
+    --default-bg : "#F8F9FA";
 }
 .link-nav > [data-active="true"] {
     @apply text-mint;
