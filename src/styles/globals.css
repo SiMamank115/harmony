@@ -3,8 +3,14 @@
 @tailwind utilities;
 
 :root {
-    --nav-height : 70px;
+    --nav-height: 70px;
 }
 .link-nav > [data-active="true"] {
     @apply text-mint;
+}
+.button {
+    --button-bg: "#1ABC9C";
+    --button-bg-hover: "#17a88c";
+    --button-text: "#fefefe";
+    @apply transition px-[1.75rem] py-[.475rem] font-medium rounded-md box-border bg-[var(--button-bg)] hover:bg-[var(--button-bg-hover)] text-[var(--button-text)];
 }
