@@ -1,10 +1,73 @@
 // pages/index.js
+import Button from "@/components/button";
 import Layout from "@/components/layout";
+import Skeleton from "@/components/skeleton";
+import { useUser } from "@auth0/nextjs-auth0/client";
+import Link from "next/link";
 
 const Index = () => {
+    const { user, error, isLoading } = useUser();
     return (
         <Layout option={{ navbar: { active: "home" } }}>
-            <div className="hero w-full bg-[url('/hero-image.jpg')] bg-cover bg-center min-h-[calc(100vh-var(--nav-height))]"></div>
+            <div className="hero w-full bg-[url('/hero-image.webp')] gap-y-4 flex flex-wrap flex-col px-10 py-16 bg-cover bg-left min-h-[calc(100vh-var(--nav-height))]">
+                <div className="text-flash flex flex-wrap gap-x-3 gap-y-6 font-bold sm:text-4xl text-2xl sm:text-left text-center sm:leading-snug w-full max-w-[550px]">
+                    {isLoading ? (
+                        <>
+                            <Skeleton height={"2.75rem"} width={"10rem"} />
+                            <Skeleton height={"2.75rem"} width={"3rem"} />
+                            <Skeleton height={"2.75rem"} width={"5rem"} />
+                            <Skeleton height={"2.75rem"} width={"7rem"} />
+                            <Skeleton height={"2.75rem"} width={"8rem"} />
+                            <Skeleton height={"2.75rem"} width={"4rem"} />
+                            <Skeleton height={"2.75rem"} width={"6rem"} />
+                            <Skeleton height={"2.75rem"} width={"9rem"} />
+                            <Skeleton height={"2.75rem"} width={"12rem"} />
+                            <Skeleton height={"2.75rem"} width={"2rem"} />
+                            <Skeleton height={"2.75rem"} width={"7rem"} />
+                            <Skeleton height={"2.75rem"} width={"5rem"} />
+                        </>
+                    ) : (
+                        <>Discover Your True Potential With TalentFinder - Your Ultimate Platform for Finding The Perfect Job Match</>
+                    )}
+                </div>
+                <div className="text-seasalt flex flex-wrap gap-x-3 gap-y-4 sm:font-medium tracking-wide sm:text-lg text-sm sm:text-left text-center max-w-[550px]">
+                    {isLoading ? (
+                        <>
+                            <Skeleton height={"1.3rem"} width={"10rem"} />
+                            <Skeleton height={"1.3rem"} width={"3rem"} />
+                            <Skeleton height={"1.3rem"} width={"5rem"} />
+                            <Skeleton height={"1.3rem"} width={"7rem"} />
+                            <Skeleton height={"1.3rem"} width={"8rem"} />
+                            <Skeleton height={"1.3rem"} width={"4rem"} />
+                            <Skeleton height={"1.3rem"} width={"6rem"} />
+                            <Skeleton height={"1.3rem"} width={"3rem"} />
+                            <Skeleton height={"1.3rem"} width={"12rem"} />
+                            <Skeleton height={"1.3rem"} width={"2rem"} />
+                            <Skeleton height={"1.3rem"} width={"7rem"} />
+                            <Skeleton height={"1.3rem"} width={"5rem"} />
+                        </>
+                    ) : (
+                        <>Welcome to TalentFinder, where we believe that everyone has unique talents that deserve to be recognized and celebrated. We're not just a job search platform -</>
+                    )}
+                </div>
+                <div className="w-full rounded-lg bg-seasalt dark:bg-gunmetal flex gap-8 p-5">
+                    <input placeholder="Find by name here ..." className="form-input" type="text"></input>
+                    <select defaultValue="none" className="form-input">
+                        <option value="none" disabled>
+                            Choose Specialization
+                        </option>
+                        <option>barudak</option>
+                        <option>tani lele</option>
+                        <option>iya kah ngerinya</option>
+                        <option>never gonna give u up</option>
+                        <option>bro is a rizzly bear</option>
+                    </select>
+                    <input placeholder="Find by city here ..." className="form-input" type="text"></input>
+                    <button onClick={() => {}} className="button bg-gunmetal text-seasalt dark:bg-seasalt dark:text-gunmetal dark:light-hover">
+                        Search
+                    </button>
+                </div>
+            </div>
         </Layout>
     );
 };

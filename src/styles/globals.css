@@ -1,22 +1,33 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-:root {
-    --default-bg : "#1F2D3D";
-    --default-text : "#F8F9FA";
-    --nav-height: 70px;
+@layer components {
+    .button {
+        @apply transition px-[1.75rem] py-[.475rem] font-medium rounded-md box-border hover:shadow-[0_0_0_100vmax_inset_rgb(0,0,0,.2)] active:shadow-[0_0_0_100vmax_inset_rgb(0,0,0,.4)];
+    }
+    .light-hover {
+        @apply hover:shadow-[0_0_0_100vmax_inset_rgb(0,0,0,.1)] active:shadow-[0_0_0_100vmax_inset_rgb(0,0,0,.2)];
+    }
+    .form-input {
+        @apply font-medium text-gunmetal dark:text-seasalt outline-none grow border p-2 rounded-md transition border-gunmetal/20 bg-gunmetal/5 focus-visible:border-gunmetal/40 focus-visible:bg-gunmetal/10 dark:border-seasalt/20 dark:bg-seasalt/5 dark:focus-visible:border-seasalt/40 dark:focus-visible:bg-seasalt/10;
+    }
+    .link-nav > a {
+        @apply transition py-2 px-5 rounded text-gunmetal dark:text-seasalt;
+    }
+    .link-nav > a:hover {
+        @apply hover:shadow-[0_0_0_100vmax_inset_rgb(0,0,0,.1)] active:shadow-[0_0_0_100vmax_inset_rgb(0,0,0,.2)];
+    }
 }
-.dark {
-    --default-text : "#1F2D3D";
-    --default-bg : "#F8F9FA";
+select.form-input {
+    @apply after:pr-6 after:content-['*'] appearance-none;
+}
+body {
+    @apply selection:bg-mint selection:text-gunmetal;
 }
 .link-nav > [data-active="true"] {
-    @apply text-mint;
+    @apply text-mint dark:text-tiffany;
 }
-.button {
-    --button-bg: "#1ABC9C";
-    --button-bg-hover: "#17a88c";
-    --button-text: "#fefefe";
-    @apply transition px-[1.75rem] py-[.475rem] font-medium rounded-md box-border bg-[var(--button-bg)] hover:bg-[var(--button-bg-hover)] text-[var(--button-text)];
+
+:root {
+    --nav-height: 70px;
 }
