@@ -9,7 +9,7 @@
         @apply hover:shadow-[0_0_0_100vmax_inset_rgb(0,0,0,.1)] active:shadow-[0_0_0_100vmax_inset_rgb(0,0,0,.2)];
     }
     .form-input {
-        @apply font-medium text-gunmetal dark:text-seasalt outline-none grow border p-2 rounded-md transition border-gunmetal/20 bg-gunmetal/5 focus-visible:border-gunmetal/40 focus-visible:bg-gunmetal/10 dark:border-seasalt/20 dark:bg-seasalt/5 dark:focus-visible:border-seasalt/40 dark:focus-visible:bg-seasalt/10;
+        @apply font-medium text-gunmetal dark:text-seasalt !outline-0 !ring-0 grow min-w-[250px] border px-2 py-[10px] rounded-md transition border-gunmetal/20 bg-gunmetal/5 focus-visible:border-gunmetal/40 focus-visible:bg-gunmetal/[.15] dark:border-seasalt/20 dark:bg-seasalt/5 dark:focus-visible:border-seasalt/40 dark:focus-visible:bg-seasalt/10;
     }
     .link-nav > a {
         @apply transition py-2 px-5 rounded text-gunmetal dark:text-seasalt;
@@ -18,8 +18,8 @@
         @apply hover:shadow-[0_0_0_100vmax_inset_rgb(0,0,0,.1)] active:shadow-[0_0_0_100vmax_inset_rgb(0,0,0,.2)];
     }
 }
-select.form-input {
-    @apply after:pr-6 after:content-['*'] appearance-none;
+option {
+    @apply bg-seasalt text-gunmetal dark:bg-gunmetal dark:text-seasalt hover:bg-mint hover:text-gunmetal;
 }
 body {
     @apply selection:bg-mint selection:text-gunmetal;

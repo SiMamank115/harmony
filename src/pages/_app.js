@@ -6,18 +6,13 @@ import "@/styles/globals.css";
 import "@/styles/AOSextend.css";
 import { SupabaseProvider } from "@/components/supabase";
 import LazyAOS from "@/components/LazyAOS";
+import BeforeLoad from "@/components/beforeLoad";
 
 const App = ({ Component, pageProps }) => {
-    useEffect(() => {
-        if (localStorage.theme === "dark" || (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
-            document.documentElement.classList.add("dark");
-        } else {
-            document.documentElement.classList.remove("dark");
-        }
-    }, []);
     return (
         <UserProvider>
             <SupabaseProvider>
+                <BeforeLoad />
                 <Component {...pageProps} />
                 <LazyAOS />
             </SupabaseProvider>

@@ -14,13 +14,15 @@ export default function LazyAOS() {
                         delete detail.dataset.aos;
                         delete detail.dataset.aosDelay;
                         delete detail.dataset.aosDuration;
+                        delete detail.dataset.aosEasing;
                     });
                     // setTimeout(() => {
                     // }, detail.dataset.aosDelay);
                 }
             });
             const AOS = require("aos");
-            AOS.init({});
+            let reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+            AOS.init({ disable: reduced, dutaion: reduced ? 400 : 0 });
         }
     }, [isLoading]);
 

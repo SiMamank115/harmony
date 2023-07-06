@@ -1,11 +1,12 @@
 import { useUser } from "@auth0/nextjs-auth0/client";
 import Link from "next/link";
 import Skeleton from "./skeleton";
+import modeToggler from "@/utils/modeToggler";
 export default function Navbar({ dashboard, active }) {
     const { user, error, isLoading } = useUser();
     return (
         <div className="flex sticky top-0 p-3 h-[var(--nav-height)] overflow-x-hidden bg-seasalt dark:bg-gunmetal mx-auto max-w-7xl px-2 md:px-6 lg:px-8 justify-between">
-            <div onClick={() => document.documentElement.classList.toggle("dark")} className="brand p-0 m-0 flex items-center gap-4">
+            <div onClick={modeToggler} className="brand p-0 m-0 flex items-center gap-4">
                 <img src="logo-11.png" className="h-3/4 max-h-[35px] rounded dark:hidden" />
                 <img src="logo-11-light.png" className="h-3/4 max-h-[35px] rounded hidden dark:block" />
             </div>

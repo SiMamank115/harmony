@@ -1,16 +1,16 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-    darkMode: 'class',
+    darkMode: "class",
     content: ["./src/pages/**/*.{js,ts,jsx,tsx}", "./src/components/**/*.{js,ts,jsx,tsx}", "./src/app/**/*.{js,ts,jsx,tsx}"],
     theme: {
         extend: {
             colors: {
-                "mint": "#1ABC9C",
-                "tiffany": "#7FD8CC",
-                "gunmetal": "#1F2D3D",
-                "charcoal": "#2C3E50",
-                "flash": "#E9ECEF",
-                "seasalt": "#F8F9FA",
+                mint: "#1ABC9C",
+                tiffany: "#7FD8CC",
+                gunmetal: "#1F2D3D",
+                charcoal: "#2C3E50",
+                flash: "#E9ECEF",
+                seasalt: "#F8F9FA",
             },
             backgroundImage: {
                 "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
@@ -18,5 +18,5 @@ module.exports = {
             },
         },
     },
-    plugins: [],
+    plugins: [require("@tailwindcss/forms")],
 };
