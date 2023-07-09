@@ -1,11 +1,14 @@
 import { withPageAuthRequired } from "@auth0/nextjs-auth0";
 import Layout from "@/components/layout";
+import { useUser } from "@auth0/nextjs-auth0/client";
 
 const Profile = () => {
+    const { user, error, isLoading } = useUser();
     return (
-        <Layout option={{ navbar: { profile: true } }}>
-            <p>PROFILE</p>
-        </Layout>
+        <div>lol</div>
+        // <Layout option={{ navbar: { dashboard: true, homeButton: false, active: "profile" } }}>
+        //     <p>PROFILE</p>
+        // </Layout>
     );
 };
 

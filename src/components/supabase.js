@@ -18,11 +18,23 @@ export const SupabaseProvider = ({ children }) => {
                     if (!isLoading && user?.accessToken) {
                         const supabase = getSupabase(user.accessToken);
                         if (supabase && !error) {
-                            supabase.rpc("check_connection").then((e) => {
-                                if (e?.error?.message == "JWT expired") {
-                                    push("/api/auth/logout");
-                                }
-                            });
+                            supabase
+                                .from("users")
+                                .select()
+                                .then((e) => {
+                                    if (e?.error?.message == "JWT expired") {
+                                        push("/api/auth/logout");
+                                    } else if (e.data.length == 0) {
+                                        supabase
+                                            .from("users")
+                                            .insert({
+                                                user_id: user.sub,
+                                            })
+                                            .then((x) => {
+                                                console.log("created");
+                                            });
+                                    }
+                                });
                             setSupa(supabase);
                         }
                     }
@@ -31,11 +43,7 @@ export const SupabaseProvider = ({ children }) => {
                 }
             })();
         }
-        // supa ? supa.destroy() : false;
-        // return () => {
-        //     supa && supa.destroy();
-        // };
-    }, [supa, isLoading]); // eslint-disable-line react-hooks/exhaustive-deps
+    }, [supa, isLoading]);
 
     return <SupabaseContext.Provider value={{ supa }}>{children}</SupabaseContext.Provider>;
 };
