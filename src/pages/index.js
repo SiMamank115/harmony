@@ -78,8 +78,25 @@ const Index = () => {
                 )}
             </div>
             <Marquee autoFill gradient gradientColor={[233, 236, 239]} gradientWidth="20%">
-                <img className="h-[200px]" src="https://fakeimg.pl/600x400?text=Sponsor&font=bebas" />
+                <img className="h-[200px]" src="https://fakeimg.pl/600x400/e9ecef/6c757d?text=SPONSOR&font=bebas" />
             </Marquee>
+            <div className="bg-seasalt dark:bg-gunmetal w-full flex md:flex-nowrap flex-wrap gap-8 px-10 py-16">
+                <div className="md:w-1/3 w-full md:max-w-[250px] flex flex-col">
+                    <div className="w-full text-mint dark:text-tiffany font-medium text-lg">Trending Job !</div>
+                    <div className="w-full text-gunmetal dark:text-seasalt text-3xl font-bold">Get Your Job in your Hand !</div>
+                </div>
+                <div className="grow flex flex-wrap gap-4">
+                    {[...Array(8)].map((e, i) => (
+                        <div className="card">
+                            <img className="max-w-[60px] rounded h-fit" alt="logo company" src="https://fakeimg.pl/600x400/1abc9c/E9ECEF?text=LOGO&font=bebas" />
+                            <div className="w-full tag-container">
+                                <div className="tag">Programming</div>
+                                <div className="tag">Analyst</div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
         </Layout>
     );
 };

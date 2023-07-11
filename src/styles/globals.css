@@ -17,6 +17,15 @@
     .link-nav > a:hover {
         @apply hover:shadow-[0_0_0_100vmax_inset_rgb(0,0,0,.1)] active:shadow-[0_0_0_100vmax_inset_rgb(0,0,0,.2)];
     }
+    .card {
+        @apply flex flex-wrap shadow-lg;
+    }
+    .tag-container {
+        @apply flex gap-3;
+    }
+    .tag {
+        @apply text-xs font-light bg-gunmetal dark:bg-charcoal text-seasalt dark:text-flash rounded px-3 py-[2px];
+    }
 }
 option {
     @apply bg-seasalt text-gunmetal dark:bg-gunmetal dark:text-seasalt hover:bg-mint hover:text-gunmetal;
