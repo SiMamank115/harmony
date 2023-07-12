@@ -81,18 +81,21 @@ const Index = () => {
                 <img className="h-[200px]" src="https://fakeimg.pl/600x400/e9ecef/6c757d?text=SPONSOR&font=bebas" />
             </Marquee>
             <div className="bg-seasalt dark:bg-gunmetal w-full flex md:flex-nowrap flex-wrap gap-8 px-10 py-16">
-                <div className="md:w-1/3 w-full md:max-w-[250px] flex flex-col">
+                <div className="md:w-2/5 w-full md:max-w-[250px] min-w-[175px] flex flex-col">
                     <div className="w-full text-mint dark:text-tiffany font-medium text-lg">Trending Job !</div>
                     <div className="w-full text-gunmetal dark:text-seasalt text-3xl font-bold">Get Your Job in your Hand !</div>
                 </div>
-                <div className="grow flex flex-wrap gap-4">
+                <div className="grow flex flex-wrap gap-x-4 gap-y-8">
                     {[...Array(8)].map((e, i) => (
-                        <div className="card">
+                        <div key={"card-" + i} className="card">
                             <img className="max-w-[60px] rounded h-fit" alt="logo company" src="https://fakeimg.pl/600x400/1abc9c/E9ECEF?text=LOGO&font=bebas" />
                             <div className="w-full tag-container">
                                 <div className="tag">Programming</div>
                                 <div className="tag">Analyst</div>
                             </div>
+                            <div className="text-lg font-semibold w-3/4 max-w-[250px]">Software Engineer & Spesialist Data Analyst </div>
+                            <div className="text-xs leading-[1.1rem] font-medium w-3/4 max-w-[250px]">Our state-of-the-art technology and advanced filtering options enable you to find the perfect job match based on your skills, experience, and preferences.</div>
+                            <button className="button bg-mint text-seasalt dark:bg-tiffany dark:text-gunmetal w-fit">Go Apply</button>
                         </div>
                     ))}
                 </div>
