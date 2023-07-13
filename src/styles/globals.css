@@ -1,6 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@layer base {
+    .shadow-medium { 
+        @apply shadow-[0_7.5px_20px_-5px_rgb(0_0_0_/_0.3)];
+    }
+}
 @layer components {
     .button {
         @apply transition px-[1.75rem] py-[.475rem] font-medium rounded-md box-border hover:shadow-[0_0_0_100vmax_inset_rgb(0,0,0,.2)] active:shadow-[0_0_0_100vmax_inset_rgb(0,0,0,.4)];
@@ -18,7 +23,7 @@
         @apply hover:shadow-[0_0_0_100vmax_inset_rgb(0,0,0,.1)] active:shadow-[0_0_0_100vmax_inset_rgb(0,0,0,.2)];
     }
     .card {
-        @apply flex flex-col ring-0 gap-3 px-3 py-5 grow shadow-[0_7.5px_20px_-5px_rgb(0_0_0_/_0.3)] rounded-xl;
+        @apply flex flex-col gap-3 px-3 py-5 grow shadow-medium rounded-xl;
     }
     .tag-container {
         @apply flex gap-3;
@@ -26,12 +31,18 @@
     .tag {
         @apply text-xs font-light bg-gunmetal dark:bg-charcoal text-seasalt dark:text-flash rounded px-3 py-[2px];
     }
+    .devider {
+        @apply flex w-full my-16 gap-10 px-10 items-center justify-center;
+    }
+    .devider-line {
+        @apply sm:block hidden grow border-[1px] rounded-full border-gunmetal/25 dark:border-seasalt/25;
+    }
 }
 option {
     @apply bg-seasalt text-gunmetal dark:bg-gunmetal dark:text-seasalt hover:bg-mint hover:text-gunmetal;
 }
 body {
-    @apply selection:bg-mint selection:text-gunmetal;
+    @apply selection:bg-mint selection:text-gunmetal bg-seasalt dark:bg-gunmetal;
 }
 .link-nav > [data-active="true"] {
     @apply text-mint dark:text-tiffany;

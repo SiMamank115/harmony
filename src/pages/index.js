@@ -77,28 +77,54 @@ const Index = () => {
                     </form>
                 )}
             </div>
-            <Marquee autoFill gradient gradientColor={[233, 236, 239]} gradientWidth="20%">
+            <Marquee className="border-b-2 border-gunmetal/10" autoFill gradient gradientColor={[233, 236, 239]} gradientWidth="20%">
                 <img className="h-[200px]" src="https://fakeimg.pl/600x400/e9ecef/6c757d?text=SPONSOR&font=bebas" />
             </Marquee>
-            <div className="bg-seasalt dark:bg-gunmetal w-full flex md:flex-nowrap flex-wrap gap-8 px-10 py-16">
+            <div className="w-full flex md:flex-nowrap flex-wrap gap-8 px-10 py-16">
                 <div className="md:w-2/5 w-full md:max-w-[250px] min-w-[175px] flex flex-col">
                     <div className="w-full text-mint dark:text-tiffany font-medium text-lg">Trending Job !</div>
                     <div className="w-full text-gunmetal dark:text-seasalt text-3xl font-bold">Get Your Job in your Hand !</div>
                 </div>
                 <div className="grow flex flex-wrap gap-x-4 gap-y-8">
-                    {[...Array(8)].map((e, i) => (
+                    {[...Array(6)].map((e, i) => (
                         <div key={"card-" + i} className="card">
                             <img className="max-w-[60px] rounded h-fit" alt="logo company" src="https://fakeimg.pl/600x400/1abc9c/E9ECEF?text=LOGO&font=bebas" />
                             <div className="w-full tag-container">
                                 <div className="tag">Programming</div>
                                 <div className="tag">Analyst</div>
                             </div>
-                            <div className="text-lg font-semibold w-3/4 max-w-[250px]">Software Engineer & Spesialist Data Analyst </div>
-                            <div className="text-xs leading-[1.1rem] font-medium w-3/4 max-w-[250px]">Our state-of-the-art technology and advanced filtering options enable you to find the perfect job match based on your skills, experience, and preferences.</div>
+                            <div className="text-lg font-semibold w-3/4 max-w-[250px] text-gunmetal dark:text-seasalt">Software Engineer & Spesialist Data Analyst </div>
+                            <div className="text-xs leading-[1.1rem] font-medium w-3/4 max-w-[250px] text-gunmetal dark:text-seasalt">Our state-of-the-art technology and advanced filtering options enable you to find the perfect job match based on your skills, experience, and preferences.</div>
                             <button className="button bg-mint text-seasalt dark:bg-tiffany dark:text-gunmetal w-fit">Go Apply</button>
                         </div>
                     ))}
                 </div>
+            </div>
+            <div className="devider">
+                <div className="devider-line"></div>
+                <button className="py-3 shadow-medium button bg-gunmetal text-seasalt dark:bg-flash dark:text-gunmetal">Load More Jobs</button>
+                <div className="devider-line"></div>
+            </div>
+            <div className="w-full flex md:flex-nowrap flex-wrap gap-8 px-10 py-16">
+                <div className="md:w-2/5 w-full md:max-w-[250px] min-w-[175px] flex flex-col">
+                    <div className="w-full text-mint dark:text-tiffany font-medium text-lg">Top Talent !</div>
+                    <div className="w-full text-gunmetal dark:text-seasalt text-3xl font-bold">Get Your Talent Here !</div>
+                </div>
+                <div className="grow flex flex-wrap gap-x-4 gap-y-8">
+                    {[...Array(6)].map((e, i) => (
+                        <div key={"card-" + i} className="card">
+                            <img className="max-w-[100px] grow mx-auto aspect-square rounded-full" alt="logo company" src="https://fakeimg.pl/600x400/1abc9c/E9ECEF?text=antony&font=bebas" />
+                            <div className="text-lg text-center mx-auto font-semibold w-3/4 max-w-[250px] text-gunmetal dark:text-seasalt">Antony Barakuda Mamakkau</div>
+                            <div className="text-xs text-center mx-auto leading-[1.1rem] font-medium w-3/4 max-w-[250px] text-gunmetal dark:text-seasalt">3+ years experience as software engineer</div>
+                            <button className="button bg-gunmetal mx-auto text-seasalt dark:bg-flash dark:text-gunmetal w-fit">See More</button>
+                        </div>
+                    ))}
+                </div>
+            </div>
+            <div className="devider">
+                <div className="devider-line"></div>
+                <button className="py-3 shadow-medium button bg-gunmetal text-seasalt dark:bg-flash dark:text-gunmetal">Load More Talent</button>
+                <div className="devider-line"></div>
             </div>
         </Layout>
     );

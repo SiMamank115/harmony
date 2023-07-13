@@ -6,7 +6,7 @@ import modeToggler from "@/utils/modeToggler";
 export default function Navbar({ dashboard, active, homeButton }) {
     const { user, error, isLoading } = useUser();
     return (
-        <div className="flex sticky top-0 p-3 h-[var(--nav-height)] overflow-x-hidden bg-seasalt dark:bg-gunmetal mx-auto max-w-7xl px-2 md:px-6 lg:px-8 justify-between z-50">
+        <div className="flex sticky top-0 p-3 h-[var(--nav-height)] overflow-x-hidden bg-seasalt dark:bg-gunmetal w-full px-2 md:px-6 lg:px-8 justify-between z-50">
             <div onClick={modeToggler} className="brand p-0 m-0 flex items-center gap-4">
                 <img src="/logo-11.png" className="h-3/4 max-h-[35px] rounded dark:hidden" />
                 <img src="/logo-11-light.png" className="h-3/4 max-h-[35px] rounded hidden dark:block" />
