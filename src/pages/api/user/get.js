@@ -1,5 +1,4 @@
 import { getSession, withApiAuthRequired } from "@auth0/nextjs-auth0";
-import { useUser } from "@auth0/nextjs-auth0/client";
 import axios from "axios";
 export default withApiAuthRequired(async function handler(req, res) {
     const { user } = await getSession(req, res);

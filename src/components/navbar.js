@@ -6,7 +6,7 @@ import modeToggler from "@/utils/modeToggler";
 export default function Navbar({ dashboard, active, homeButton }) {
     const { user, error, isLoading } = useUser();
     return (
-        <div className="flex sticky top-0 p-3 h-[var(--nav-height)] overflow-x-hidden bg-seasalt dark:bg-gunmetal w-full px-2 md:px-6 lg:px-8 justify-between z-50">
+        <div className="flex shadow-sm sticky top-0 p-3 h-[var(--nav-height)] overflow-x-hidden bg-seasalt dark:bg-gunmetal w-full px-2 md:px-6 lg:px-8 justify-between z-50">
             <div onClick={modeToggler} className="brand p-0 m-0 flex items-center gap-4">
                 <img src="/logo-11.png" className="h-3/4 max-h-[35px] rounded dark:hidden" />
                 <img src="/logo-11-light.png" className="h-3/4 max-h-[35px] rounded hidden dark:block" />
@@ -81,7 +81,7 @@ export default function Navbar({ dashboard, active, homeButton }) {
                             <Link data-aos-clean data-aos="fade-left" data-aos-delay="100" key={"button-login"} className="bg-mint text-seasalt dark:bg-tiffany dark:text-gunmetal button" href={"/api/auth/login"}>
                                 Login
                             </Link>
-                            <Link data-aos-clean data-aos="fade-left" data-aos-delay="0" key={"button-login2"} className="bg-transparent text-gunmetal dark:text-seasalt button light-hover outline -outline-offset-2 outline-2 outline-gunmetal dark:outline-seasalt" href={"/api/auth/login"}>
+                            <Link data-aos-clean data-aos="fade-left" data-aos-delay="0" key={"button-login2"} className="bg-transparent text-gunmetal dark:text-seasalt button light-hover outline -outline-offset-2 outline-2 outline-gunmetal dark:outline-seasalt" href={"/enterpeneur"}>
                                 Login as Enterpeneur
                             </Link>
                         </>
