@@ -13,31 +13,35 @@ const Profile = () => {
     const [update, setUpdate] = useState(0);
     const [user, setUser] = useState({});
     const [loading, setLoading] = useState(true);
-    const reset = () => {
-        if (loading || !user) return;
-        let UTCattempt = new Date().getTime() - ((user.user_metadata?.last_reset_password_attempt ?? 0) + 3600000);
-        if (UTCattempt < 0) {
-            toast.error(`Try again in ${Math.ceil((UTCattempt * -1 * 0.001) / 60)} Minutes !`, { theme: localStorage.theme, position: toast.POSITION.BOTTOM_RIGHT });
-        } else {
-            toast.promise(
-                axios
-                    .post("/api/user/update", {
-                        user_metadata: {
-                            last_reset_password_attempt: new Date().getTime(),
-                        },
-                    })
-                    .then((e) => {
-                        setUpdate(update + 1);
-                        return axios.post("/api/user/reset_password");
-                    }),
-                {
-                    pending: "Sending to your email !",
-                    success: "Check your email !",
-                    error: "Please try again !",
-                },
-                { theme: localStorage.theme, position: toast.POSITION.BOTTOM_RIGHT }
-            );
-        }
+    const reset = (event) => {
+        event.target.setAttribute("disabled","");
+        axios.get("/api/user/get?metadata=last_reset_password_attempt").then((e) => {
+            event.target.removeAttribute("disabled");
+            if (loading || !user) return toast.error(`Error !`, { theme: localStorage.theme, position: toast.POSITION.BOTTOM_RIGHT });
+            let UTCattempt = new Date().getTime() - ((e.data.user_metadata?.last_reset_password_attempt ?? 0) + 3600000);
+            if (UTCattempt < 0) {
+                toast.error(`Try again in ${Math.ceil((UTCattempt * -1 * 0.001) / 60)} Minutes !`, { theme: localStorage.theme, position: toast.POSITION.BOTTOM_RIGHT });
+            } else {
+                toast.promise(
+                    axios
+                        .post("/api/user/update", {
+                            user_metadata: {
+                                last_reset_password_attempt: new Date().getTime(),
+                            },
+                        })
+                        .then((e) => {
+                            // setUpdate(update + 1);
+                            // return axios.post("/api/user/reset_password");
+                        }),
+                    {
+                        pending: "Sending to your email !",
+                        success: "Check your email !",
+                        error: "Please try again !",
+                    },
+                    { theme: localStorage.theme, position: toast.POSITION.BOTTOM_RIGHT }
+                );
+            }
+        });
     };
     useEffect(() => {
         setUser({});
