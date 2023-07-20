@@ -8,16 +8,40 @@ import Skeleton from "@/components/skeleton";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { toast } from "react-toastify";
 const Profile = () => {
+    const [update, setUpdate] = useState(0);
     const [user, setUser] = useState({});
     const [loading, setLoading] = useState(true);
-    const schema = yup
-        .object({
-            firstName: yup.string().required(),
-            age: yup.number().positive().integer().required(),
-        })
-        .required();
+    const reset = () => {
+        if (loading || !user) return;
+        let UTCattempt = new Date().getTime() - ((user.user_metadata?.last_reset_password_attempt ?? 0) + 3600000);
+        if (UTCattempt < 0) {
+            toast.error(`Try again in ${Math.ceil((UTCattempt * -1 * 0.001) / 60)} Minutes !`, { theme: localStorage.theme, position: toast.POSITION.BOTTOM_RIGHT });
+        } else {
+            toast.promise(
+                axios
+                    .post("/api/user/update", {
+                        user_metadata: {
+                            last_reset_password_attempt: new Date().getTime(),
+                        },
+                    })
+                    .then((e) => {
+                        setUpdate(update + 1);
+                        return axios.post("/api/user/reset_password");
+                    }),
+                {
+                    pending: "Sending to your email !",
+                    success: "Check your email !",
+                    error: "Please try again !",
+                },
+                { theme: localStorage.theme, position: toast.POSITION.BOTTOM_RIGHT }
+            );
+        }
+    };
     useEffect(() => {
+        setUser({});
+        setLoading(true);
         axios
             .get("/api/user/get")
             .catch((e) => {
@@ -33,7 +57,7 @@ const Profile = () => {
                     setLoading(false);
                 }
             });
-    }, []);
+    }, [update]);
     return (
         <Layout option={{ navbar: { dashboard: true, homeButton: false, active: "profile" } }}>
             <Head>
@@ -70,7 +94,9 @@ const Profile = () => {
                     {loading ? <Skeleton width={"100%"} height={"6.6rem"} /> : <textarea rows={4} className="form-input" disabled={loading} type="text" defaultValue={loading && user.user_metadata?.bio ? "" : user.user_metadata?.bio} />}
                 </div>
                 <div className="w-full flex justify-center gap-6">
-                    <button className="button bg-red-600 text-seasalt dark:bg-red-800 dark:text-seasalt">Change password</button>
+                    <button onClick={reset} className="button bg-red-600 text-seasalt dark:bg-red-800 dark:text-seasalt">
+                        Change password
+                    </button>
                     <button className="button bg-mint text-seasalt dark:bg-tiffany dark:text-gunmetal">Save changes</button>
                 </div>
             </div>

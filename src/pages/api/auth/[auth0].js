@@ -21,7 +21,7 @@ export default handleAuth({
             console.log("In");
         } catch (error) {
             console.log("In Error");
-            res.status(error.status || 500).redirect("/").end(error.message);
+            res.status(error.status || 500).end(error.message);
         }
     },
 });

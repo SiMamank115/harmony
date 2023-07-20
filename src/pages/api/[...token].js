@@ -1,7 +1,9 @@
 import axios from "axios";
 export default async function handler(req, res) {
     try {
-        if (req.method != "POST" && req.queries.token[0] == process.env.TOKEN_QUERY) throw Error();
+        if (req.method != "POST" || req.query?.token.findIndex((e) => e == process.env.TOKEN_QUERY) == -1) {
+            throw Error();
+        }
         let token = await axios.post(
             `${process.env.AUTH0_ISSUER_BASE_URL}/oauth/token`,
             { client_id: process.env.AUTH0_API_CLIENT_ID, client_secret: process.env.AUTH0_API_CLIENT_SECRET, audience: process.env.AUTH0_AUDIENCE, grant_type: "client_credentials" },

@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 @layer base {
-    .shadow-medium { 
+    .shadow-medium {
         @apply shadow-[0_7.5px_20px_-5px_rgb(0_0_0_/_0.3)];
     }
 }
@@ -59,4 +59,11 @@ body {
 
 :root {
     --nav-height: 70px;
+    --toastify-color-dark: #e9ecef;
+    --toastify-color-light: #2c3e50;
+    --toastify-text-color-light: #e9ecef;
+    --toastify-text-color-dark: #2c3e50;
+}
+.Toastify__toast {
+    @apply shadow-medium;
 }
