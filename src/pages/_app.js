@@ -16,7 +16,7 @@ const App = ({ Component, pageProps }) => {
             <SupabaseProvider>
                 <BeforeLoad />
                 <Component {...pageProps} />
-                <ToastContainer limit={3} />
+                <ToastContainer limit={3} draggablePercent={50} />
                 <LazyAOS />
             </SupabaseProvider>
         </UserProvider>
