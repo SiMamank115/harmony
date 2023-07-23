@@ -9,8 +9,10 @@ import { SupabaseProvider } from "@/components/supabase";
 import LazyAOS from "@/components/LazyAOS";
 import BeforeLoad from "@/components/beforeLoad";
 import { ToastContainer } from "react-toastify";
+import { compactUtils } from "@/utils/compactUtils";
 
 const App = ({ Component, pageProps }) => {
+    compactUtils()
     return (
         <UserProvider>
             <SupabaseProvider>

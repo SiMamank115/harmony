@@ -5,10 +5,10 @@ import modeToggler from "@/utils/modeToggler";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { FaAngleRight, FaBars } from "react-icons/fa6";
+import { checkRoute } from "@/utils/compactUtils";
 export default function Navbar({ dashboard, active, homeButton }) {
     const { user, error, isLoading } = useUser();
     const router = useRouter();
-    console.log(router);
     const [sideMenu, setSideMenu] = useState(false);
     const [userDropdown, setUserDropdown] = useState(false);
     return (
@@ -75,14 +75,31 @@ export default function Navbar({ dashboard, active, homeButton }) {
                         {!isLoading && user && !error ? (
                             <>
                                 <div className="w-[45px] items-center relative shadow-mudium md:flex hidden">
-                                    <button className="m-0 p-0 rounded-full" onClick={() => setUserDropdown(!userDropdown)} onBlur={() => setUserDropdown(false)}>
+                                    <button
+                                        className="m-0 p-0 rounded-full"
+                                        onClick={() => setUserDropdown(!userDropdown)}
+                                        onBlur={() =>
+                                            setTimeout(() => {
+                                                setUserDropdown(false);
+                                            }, 100)
+                                        }
+                                    >
                                         <img className="aspect-square cursor-pointer rounded-full hover:brightness-[.9] active:brightness-[.8] transition" src={user.picture} />
                                     </button>
-                                    <div className={"absolute transition rounded-md w-screen max-w-[200px] top-[120%] -right-[5%] h-[50px] bg-mint origin-top-right" + (!userDropdown ? " scale-0 opacity-0" : "")}></div>
+                                    <div className={"group [&>*]:px-4 pt-3 absolute overflow-hidden transition select-none shadow-medium rounded-md w-fit max-w-[400px] top-[120%] -right-[5%] bg-charcoal text-seasalt origin-top-right" + (!userDropdown ? " scale-0 opacity-0" : "") + (router.route.checkRoute("/dashboard",0) ? " dashboard-nav" :" home-nav")}>
+                                        <div className="font-light">{user.nickname.uppercaseFirst()}</div>
+                                        <div className="text-sm font-light">{user.email}</div>
+                                        <Link href="/" className="group-[.home-nav]:active border-t border-seasalt/75 rounded-none px-0 mt-2 py-3 button w-full block">
+                                            Home
+                                        </Link>
+                                        <Link href="/dashboard" className="group-[.dashboard-nav]:active rounded-none px-0 py-3 button w-full block">
+                                            Dashboard
+                                        </Link>
+                                        <Link href="/api/auth/logout" className="rounded-none text-[#ef233c] font-bold px-0 py-3 button w-full block">
+                                            Logout
+                                        </Link>
+                                    </div>
                                 </div>
-                                <Link key={"button-logout"} href={"/api/auth/logout"} className="button light-hover text-[#ef233c] md:block hidden">
-                                    Logout
-                                </Link>
                             </>
                         ) : (
                             ""

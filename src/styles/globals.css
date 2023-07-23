@@ -10,6 +10,9 @@
     .button {
         @apply transition px-[1.75rem] py-[.475rem] font-medium rounded-md box-border hover:shadow-[0_0_0_100vmax_inset_rgb(0,0,0,.2)] active:shadow-[0_0_0_100vmax_inset_rgb(0,0,0,.4)] disabled:shadow-[0_0_0_100vmax_inset_rgb(0,0,0,.4)];
     }
+    .button.active {
+        @apply text-mint dark:text-tiffany font-semibold;
+    }
     .big-button {
         @apply button px-[3.5rem] py-[1rem] text-xl;
     }
