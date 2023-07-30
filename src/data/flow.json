@@ -1,10 +1,38 @@
 {
-    "/" : {
-        "nav": [
-            {
-                "href":"/",
-                "name":"Home"
-            }
-        ]
-    }
+    "/": [
+        {
+            "href": "/",
+            "name": "Home"
+        },
+        {
+            "href": "/faq",
+            "name": "FAQ"
+        },
+        {
+            "href": "/search?type=job",
+            "name": "Job"
+        },
+        {
+            "href": "/search?type=talent",
+            "name": "Talent Finder"
+        }
+    ],
+    "/dashboard": [
+        {
+            "href": "/",
+            "name": "dashboard"
+        },
+        {
+            "href": "/nav1",
+            "name": "Nav 1"
+        },
+        {
+            "href": "/profile",
+            "name": "Profile"
+        },
+        {
+            "href": "/setting",
+            "name": "Setting"
+        }
+    ]
 }
