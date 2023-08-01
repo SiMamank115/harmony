@@ -59,8 +59,8 @@ const Index = () => {
                     <></>
                 ) : (
                     <form data-aos-clean data-aos="blur-fade-up" data-aos-delay="500" data-aos-easing="ease-out-back" className="w-full rounded-lg bg-seasalt dark:bg-gunmetal flex flex-wrap gap-x-8 gap-y-6 p-5 shadow-xl shadow-zinc-900/60">
-                        <input placeholder="Find by name here ..." className="form-input" type="text"></input>
-                        <select defaultValue="none" className="form-input block">
+                        <input placeholder="Find by name here ..." className="form-input w-1/5" type="text"></input>
+                        <select defaultValue="none" className="form-input block sm:min-w-[250px]">
                             <option value="none" disabled>
                                 Choose Specialization
                             </option>
@@ -70,7 +70,7 @@ const Index = () => {
                             <option>never gonna give u up</option>
                             <option>bro is a rizzly bear</option>
                         </select>
-                        <input placeholder="Find by city here ..." className="form-input" type="text"></input>
+                        <input placeholder="Find by city here ..." className="form-input w-1/5" type="text"></input>
                         <button type="submit" onClick={() => {}} className="button grow bg-gunmetal text-seasalt dark:bg-tiffany dark:text-gunmetal">
                             Search
                         </button>

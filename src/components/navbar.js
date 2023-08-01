@@ -5,10 +5,10 @@ import modeToggler from "@/utils/modeToggler";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { FaAngleRight, FaBars } from "react-icons/fa6";
-import { checkRoute } from "@/utils/compactUtils";
-export default function Navbar({ dashboard, active, homeButton }) {
+export default function Navbar() {
     const { user, error, isLoading } = useUser();
     const router = useRouter();
+    const dashboard = router.route.checkRoute("/dashboard",0);
     const [sideMenu, setSideMenu] = useState(false);
     const [userDropdown, setUserDropdown] = useState(false);
     return (
@@ -34,31 +34,31 @@ export default function Navbar({ dashboard, active, homeButton }) {
                             </>
                         ) : !dashboard ? (
                             <>
-                                <Link data-aos-clean data-aos="fade" data-aos-delay="0" data-active={active == "home"} href="/">
+                                <Link data-aos-clean data-aos="fade" data-aos-delay="0" data-active={router.route.checkRoute("/",0)} href="/">
                                     Home
                                 </Link>
-                                <Link data-aos-clean data-aos="fade" data-aos-delay="50" data-active={active == "faq"} href="/">
+                                <Link data-aos-clean data-aos="fade" data-aos-delay="50" data-active={router.route.checkRoute("/FAQ",0)} href="/FAQ">
                                     FAQ
                                 </Link>
-                                <Link data-aos-clean data-aos="fade" data-aos-delay="100" data-active={active == "job"} href="/">
+                                <Link data-aos-clean data-aos="fade" data-aos-delay="100" href="/">
                                     Job
                                 </Link>
-                                <Link data-aos-clean data-aos="fade" data-aos-delay="150" data-active={active == "talent"} href="/">
+                                <Link data-aos-clean data-aos="fade" data-aos-delay="150" href="/">
                                     Talent Finder
                                 </Link>
                             </>
                         ) : (
                             <>
-                                <Link data-aos-clean data-aos="fade" data-aos-delay="0" data-active={active == "job"} href="/">
+                                <Link data-aos-clean data-aos="fade" data-aos-delay="0" href="/">
                                     Jobs
                                 </Link>
-                                <Link data-aos-clean data-aos="fade" data-aos-delay="50" data-active={active == "recruit"} href="/">
+                                <Link data-aos-clean data-aos="fade" data-aos-delay="50" href="/">
                                     Recruit
                                 </Link>
-                                <Link data-aos-clean data-aos="fade" data-aos-delay="100" data-active={active == "profile"} href="/dashboard/profile">
+                                <Link data-aos-clean data-aos="fade" data-aos-delay="100" data-active={router.route.checkRoute("/dashboard/profile",0)} href="/dashboard/profile">
                                     Profile
                                 </Link>
-                                <Link data-aos-clean data-aos="fade" data-aos-delay="150" data-active={active == "setting"} href="/dashboard/setting">
+                                <Link data-aos-clean data-aos="fade" data-aos-delay="150" data-active={arouter.route.checkRoute("/dashboard/setting",0)} href="/dashboard/setting">
                                     Setting
                                 </Link>
                             </>
@@ -86,7 +86,7 @@ export default function Navbar({ dashboard, active, homeButton }) {
                                     >
                                         <img className="aspect-square cursor-pointer rounded-full hover:brightness-[.9] active:brightness-[.8] transition" src={user.picture} />
                                     </button>
-                                    <div className={"group [&>*]:px-4 pt-3 absolute overflow-hidden transition select-none shadow-medium rounded-md w-fit max-w-[400px] top-[120%] -right-[5%] bg-charcoal text-seasalt origin-top-right" + (!userDropdown ? " scale-0 opacity-0" : "") + (router.route.checkRoute("/dashboard",0) ? " dashboard-nav" :" home-nav")}>
+                                    <div className={"group [&>*]:px-4 pt-3 absolute overflow-hidden transition select-none shadow-medium rounded-md w-fit max-w-[400px] top-[120%] -right-[5%] bg-charcoal text-seasalt origin-top-right" + (!userDropdown ? " scale-0 opacity-0" : "") + (dashboard? " dashboard-nav" :" home-nav")}>
                                         <div className="font-light">{user.nickname.uppercaseFirst()}</div>
                                         <div className="text-sm font-light">{user.email}</div>
                                         <Link href="/" className="group-[.home-nav]:active border-t border-seasalt/75 rounded-none px-0 mt-2 py-3 button w-full block">
