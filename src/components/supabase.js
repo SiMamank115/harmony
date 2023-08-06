@@ -25,7 +25,7 @@ export const SupabaseProvider = ({ children }) => {
                                     if (e?.error?.message == "JWT expired") {
                                         push("/api/auth/logout");
                                     } else if (e.data.length == 0) {
-                                        supabase
+                                        supabase    
                                             .from("users")
                                             .insert({
                                                 user_id: user.sub,

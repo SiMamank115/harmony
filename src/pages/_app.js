@@ -10,6 +10,7 @@ import LazyAOS from "@/components/LazyAOS";
 import BeforeLoad from "@/components/beforeLoad";
 import { ToastContainer } from "react-toastify";
 import { compactUtils } from "@/utils/compactUtils";
+import ErrorPopup from "@/components/errorPopup";
 
 const App = ({ Component, pageProps }) => {
     compactUtils()
@@ -18,6 +19,7 @@ const App = ({ Component, pageProps }) => {
             <SupabaseProvider>
                 <BeforeLoad />
                 <Component {...pageProps} />
+                <ErrorPopup />
                 <ToastContainer limit={3} draggablePercent={50} />
                 <LazyAOS />
             </SupabaseProvider>

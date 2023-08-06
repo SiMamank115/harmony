@@ -23,7 +23,7 @@
         @apply hover:shadow-[0_0_0_100vmax_inset_rgb(0,0,0,.1)] active:shadow-[0_0_0_100vmax_inset_rgb(0,0,0,.2)];
     }
     .form-input {
-        @apply font-medium text-gunmetal dark:text-seasalt !outline-0 !ring-0 grow sm:min-w-[250px] border px-2 py-[10px] rounded-md transition border-gunmetal/20 bg-gunmetal/5 focus-visible:border-gunmetal/40 focus-visible:bg-gunmetal/[.15] dark:border-seasalt/20 dark:bg-seasalt/5 dark:focus-visible:border-seasalt/40 dark:focus-visible:bg-seasalt/10;
+        @apply disabled:shadow-[0_0_0_100vmax_inset] disabled:shadow-gunmetal/20 dark:disabled:shadow-seasalt/10 font-medium text-gunmetal dark:text-seasalt !outline-0 !ring-0 grow sm:min-w-[250px] max-w-full border px-2 py-[10px] rounded-md transition border-gunmetal/20 bg-gunmetal/5 focus-visible:border-gunmetal/40 focus-visible:bg-gunmetal/[.15] dark:border-seasalt/20 dark:bg-seasalt/5 dark:focus-visible:border-seasalt/40 dark:focus-visible:bg-seasalt/10;
     }
     .wrapper {
         @apply flex flex-wrap flex-col;

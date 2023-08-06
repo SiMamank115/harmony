@@ -58,7 +58,7 @@ export default function Navbar() {
                                 <Link data-aos-clean data-aos="fade" data-aos-delay="100" data-active={router.route.checkRoute("/dashboard/profile",0)} href="/dashboard/profile">
                                     Profile
                                 </Link>
-                                <Link data-aos-clean data-aos="fade" data-aos-delay="150" data-active={arouter.route.checkRoute("/dashboard/setting",0)} href="/dashboard/setting">
+                                <Link data-aos-clean data-aos="fade" data-aos-delay="150" data-active={router.route.checkRoute("/dashboard/setting",0)} href="/dashboard/setting">
                                     Setting
                                 </Link>
                             </>
