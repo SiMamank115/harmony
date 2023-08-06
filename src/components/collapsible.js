@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { BsPlusCircle } from "react-icons/bs";
+import { BsPlusCircle, BsDashCircle } from "react-icons/bs";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { uid } from "uid";
 export default function Collapsible({ children, autoOpen }) {
@@ -24,8 +24,14 @@ export default function Collapsible({ children, autoOpen }) {
 				(!autoOpen ? " collapse-show" : "")
 			}
 		>
-			<div className="flex justify-between py-5 hover-darken transition px-4 gap-x-4">
-				<div className="font-bold text-xl">
+			<div className="flex justify-between py-5 hover-darken transition px-4 gap-x-4 cursor-pointer"
+			onClick={(e) =>
+					document
+						.getElementById(id)
+						?.classList?.toggle?.("collapse-show")
+				}>
+				<div className="font-bold text-xl"
+				>
 					{children?.[0] && typeof children == "object" ? (
 						children[0]
 					) : typeof children == "string" ? (
@@ -38,13 +44,9 @@ export default function Collapsible({ children, autoOpen }) {
 					)}
 				</div>
 				<button
-					onClick={(e) =>
-						document
-							.getElementById(id)
-							?.classList?.toggle?.("collapse-show")
-					}
 				>
-					<BsPlusCircle className="text-xl" />
+					<BsDashCircle  className="text-xl group-[.collapse-show]:hidden"/>
+					<BsPlusCircle className="text-xl group-[.collapse-show]:block hidden" />
 				</button>
 			</div>
 			<div

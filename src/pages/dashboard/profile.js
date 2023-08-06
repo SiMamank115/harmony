@@ -152,7 +152,7 @@ const Profile = () => {
 								user?.identities
 									?.map((e) =>
 										(e.isSocial &&
-											fulluser.user_id.split("|")[0]) ==
+											user.user_id.split("|")[0]) ==
 											e.provider || !e.email_verified
 											? 1
 											: 0
