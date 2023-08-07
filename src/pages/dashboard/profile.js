@@ -40,7 +40,7 @@ const Profile = () => {
 				pending: "Updating your profile !",
 				success: {
 					render() {
-						setUpdate(update + 1)
+						setUpdate(update + 1);
 						return "Updated your profile !";
 					},
 				},
@@ -95,6 +95,7 @@ const Profile = () => {
 		axios
 			.get("/api/user/get")
 			.catch((e) => {
+				setUpdate(update + 1);
 				setUser({});
 				setLoading(false);
 			})
@@ -103,6 +104,7 @@ const Profile = () => {
 					setUser(e.data);
 					setLoading(false);
 				} else {
+					setUpdate(update + 1);
 					setUser({});
 					setLoading(false);
 				}
@@ -118,13 +120,6 @@ const Profile = () => {
 	}, [errors]);
 	return (
 		<Layout
-			option={{
-				navbar: {
-					dashboard: true,
-					homeButton: false,
-					active: "profile",
-				},
-			}}
 		>
 			<Head>
 				<title>Profile | Harmony Hires</title>
