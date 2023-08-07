@@ -62,13 +62,7 @@ export default function Navbar() {
 									<Link data-aos-clean data-aos="fade" data-aos-delay="0" data-active={router.route.checkRoute("/", 0)} href="/">
 										Home
 									</Link>
-									<Link
-										data-aos-clean
-										data-aos="fade"
-										data-aos-delay="50"
-										data-active={router.route.checkRoute("/FAQ", 0)}
-										href="/FAQ"
-									>
+									<Link data-aos-clean data-aos="fade" data-aos-delay="50" data-active={router.route.checkRoute("/FAQ", 0)} href="/FAQ">
 										FAQ
 									</Link>
 									<Link data-aos-clean data-aos="fade" data-aos-delay="100" href="/">
@@ -119,11 +113,11 @@ export default function Navbar() {
 								<>
 									<div
 										id="dropdown"
-										className="w-[45px] justify-center rounded-full border border-mint items-center relative shadow-mudium md:flex hidden"
+										className="w-[45px] justify-center rounded-full items-center relative shadow-mudium md:flex hidden"
 									>
-										<button className="m-0 rounded-full p-[2px]">
+										<button className="m-0 rounded-full">
 											<Image
-												className="aspect-square cursor-pointer rounded-full hover:brightness-[.9] active:brightness-[.8] transition"
+												className="aspect-square ring-1 ring-mint ring-offset-2 dark:ring-offset-gunmetal cursor-pointer rounded-full hover:brightness-[.9] active:brightness-[.8] transition"
 												src={user.picture}
 												width={40}
 												height={40}
@@ -131,42 +125,38 @@ export default function Navbar() {
 										</button>
 										<div
 											className={
-												"group [&>*]:px-4 pt-3 absolute flex flex-wrap overflow-hidden transition select-none shadow-[2px_2px_10px_0px_rgb(0_0_0_/_0.1)] border border-gunmetal/10 rounded-md w-fit max-w-[400px] top-[120%] -right-[5%] dark:bg-charcoal bg-seasalt dark:text-seasalt text-gunmetal origin-top-right" +
+												"group [&>*]:px-4 w-screen max-w-[320px] pt-3 absolute flex flex-wrap overflow-hidden transition select-none shadow-[2px_2px_10px_0px_rgb(0_0_0_/_0.1)] border border-gunmetal/10 rounded-md top-[120%] -right-[5%] dark:bg-charcoal bg-seasalt dark:text-seasalt text-gunmetal origin-top-right" +
 												(!userDropdown ? " scale-0 opacity-0" : "")
 											}
 										>
-											<Image
-												className="aspect-square !p-0 rounded-full hover:brightness-[.9] active:brightness-[.8] transition"
-												src={user.picture}
-												width={40}
-												height={40}
-											/>
-											<div>
-												<div className="font-light">{user.nickname.uppercaseFirst()}</div>
-												<div className="text-sm font-light">{user.email}</div>
+											<div className="flex gap-4 w-full">
+												<div>
+													<Image
+														className="aspect-square ring-1 ring-mint ring-offset-2 dark:ring-offset-gunmetal rounded-full hover:brightness-[.9] active:brightness-[.8] transition"
+														src={user.picture}
+														width={40}
+														height={40}
+													/>
+												</div>
+												<div className="grow">
+													<div className="font-light flex justify-between">
+														<span className="font-semibold">{user.nickname.uppercaseFirst()}</span>
+														<span className={"mx-4 px-2 py-[2px] text-seasalt text-[.81rem] font-semibold rounded-full " + (user?.email_verified?"bg-mint/90":"bg-[#fb8500]/90")}>{user?.email_verified?"Verified":"Pending"}</span>
+													</div>
+													<div className="text-sm font-light">{user.email}</div>
+												</div>
 											</div>
-											<Link
-												href="/"
-												className="border-t-2 border-gunmetal/10 dark:border-seasalt/10 rounded-none px-0 mt-2 py-3 button w-full block"
-											>
+											<Link href="/" className="border-t-2 dark:font-medium font-normal border-gunmetal/10 dark:border-seasalt/10 rounded-none px-0 mt-2 py-3 button w-full block">
 												Account settings
 											</Link>
-											<label
-												onMouseUp={modeToggler}
-												className="relative inline-flex items-center cursor-pointer rounded-none px-0 py-3 w-full"
-											>
-												<input
-													type="checkbox"
-													value=""
-													defaultChecked={localStorage.theme == "dark"}
-													className="sr-only peer"
-												/>
+											<label onMouseUp={modeToggler} className="relative button inline-flex items-center cursor-pointer rounded-none px-0 py-3 w-full">
+												<input type="checkbox" value="" defaultChecked={localStorage.theme == "dark"} className="sr-only peer" />
 												<div className="w-11 h-6 bg-charcoal border-2 border-gunmetal/20 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-tiffany dark:peer-focus:ring-tiffany rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-seasalt after:content-[''] after:absolute after:top-[2px] after:ms-4 after:mt-3 after:left-[2px] after:bg-seasalt after:border-seasalt after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-mint"></div>
-												<span className="ml-3 font-semibold">Dark mode</span>
+												<span className="ml-3 dark:font-medium font-normal">Dark mode</span>
 											</label>
 											<Link
 												href="/api/auth/logout"
-												className="border-t-2 border-gunmetal/10 dark:border-seasalt/10 rounded-none text-[#ef233c] font-bold px-0 py-3 button w-full block"
+												className="border-t-2 border-gunmetal/10 dark:border-seasalt/10 rounded-none text-[#ef233c] font-medium dark:font-bold px-0 py-3 button w-full block"
 											>
 												Logout
 											</Link>
