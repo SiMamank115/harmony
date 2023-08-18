@@ -2,13 +2,11 @@
 import Button from "@/components/button";
 import Layout from "@/components/layout";
 import Skeleton from "@/components/skeleton";
-import { useUser } from "@auth0/nextjs-auth0/client";
 import Head from "next/head";
 import Link from "next/link";
 import Marquee from "react-fast-marquee";
 
 const Index = () => {
-  const { user, error, isLoading } = useUser();
   return (
     <Layout option={{ navbar: { active: "home" } }}>
       <Head>
