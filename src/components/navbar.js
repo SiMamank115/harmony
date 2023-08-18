@@ -1,4 +1,3 @@
-import { useUser } from "@auth0/nextjs-auth0/client";
 import Link from "next/link";
 import Skeleton from "./skeleton";
 import modeToggler from "@/utils/modeToggler";
@@ -6,12 +5,36 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { FaAngleRight, FaBars } from "react-icons/fa6";
 import Image from "next/image";
+import axios from "axios";
 export default function Navbar() {
-	const { user, error, isLoading } = useUser();
 	const router = useRouter();
 	const dashboard = router.route.checkRoute("/dashboard", 0);
+	const [update, setUpdate] = useState(false);
 	const [sideMenu, setSideMenu] = useState(false);
 	const [userDropdown, setUserDropdown] = useState(false);
+	const [user, setUser] = useState({}); // user data
+	const [loading, setLoading] = useState(true);
+	useEffect(() => {
+		setUser({});
+		setLoading(true);
+		axios
+			.get("/api/user/get?data=email,name,nickname,picture,email_verified,app_metadata")
+			.catch((e) => {
+				setUpdate(update + 1);
+				setUser({});
+				setLoading(false);
+			})
+			.then((e) => {
+				if (e?.status == 200) {
+					setUser(e.data);
+					setLoading(false);
+				} else {
+					setUpdate(update + 1);
+					setUser({});
+					setLoading(false);
+				}
+			});
+	}, [update]);
 	useEffect(() => {
 		console.log("UseEffect");
 		document.addEventListener("click", (e) => {
@@ -52,7 +75,7 @@ export default function Navbar() {
 					</div>
 					<div className="navigation p-0 m-0 flex items-center gap-5">
 						<div className="link-nav md:flex hidden items-center gap-2 text-gunmetal font-semibold">
-							{isLoading ? (
+							{loading ? (
 								<>
 									<Skeleton width={"9rem"} />
 									<Skeleton width={"9rem"} />
@@ -102,21 +125,19 @@ export default function Navbar() {
 							)}
 						</div>
 						<div className="account-nav flex items-center gap-5">
-							{isLoading ? (
+							{loading ? (
 								<>
 									<Skeleton width={"18rem"} />
 								</>
 							) : (
 								""
 							)}
-							{!isLoading && user && !error ? (
+							{!loading && Object.keys(user).length > 0 ? (
 								<>
-									<div
-										id="dropdown"
-										className="w-[45px] justify-center rounded-full items-center relative shadow-mudium md:flex hidden"
-									>
+									<div id="dropdown" className="w-[45px] justify-center rounded-full items-center relative shadow-mudium md:flex hidden">
 										<button className="m-0 rounded-full">
 											<Image
+												alt="user profile picture"
 												className="aspect-square ring-1 ring-mint ring-offset-2 dark:ring-offset-gunmetal cursor-pointer rounded-full hover:brightness-[.9] active:brightness-[.8] transition"
 												src={user.picture}
 												width={40}
@@ -132,6 +153,7 @@ export default function Navbar() {
 											<div className="flex gap-4 w-full">
 												<div>
 													<Image
+														alt="user profile picture"
 														className="aspect-square ring-1 ring-mint ring-offset-2 dark:ring-offset-gunmetal rounded-full hover:brightness-[.9] active:brightness-[.8] transition"
 														src={user.picture}
 														width={40}
@@ -140,16 +162,29 @@ export default function Navbar() {
 												</div>
 												<div className="grow">
 													<div className="font-light flex justify-between">
-														<span className="font-semibold">{user.nickname.uppercaseFirst()}</span>
-														<span className={"mx-4 px-2 py-[2px] text-seasalt text-[.81rem] font-semibold rounded-full " + (user?.email_verified?"bg-mint/90":"bg-[#fb8500]/90")}>{user?.email_verified?"Verified":"Pending"}</span>
+														<span className="font-semibold">{user.app_metadata?.nickname.uppercaseFirst()}</span>
+														<span
+															className={
+																"mx-4 px-2 py-[2px] text-seasalt text-[.81rem] font-semibold rounded-full " +
+																(user?.email_verified ? "bg-mint/90" : "bg-[#fb8500]/90")
+															}
+														>
+															{user?.email_verified ? "Verified" : "Pending"}
+														</span>
 													</div>
 													<div className="text-sm font-light">{user.email}</div>
 												</div>
 											</div>
-											<Link href="/" className="border-t-2 dark:font-medium font-normal border-gunmetal/10 dark:border-seasalt/10 rounded-none px-0 mt-2 py-3 button w-full block">
+											<Link
+												href="/dashboard/profile"
+												className="border-t-2 dark:font-medium font-normal border-gunmetal/10 dark:border-seasalt/10 rounded-none px-0 mt-2 py-3 button w-full block"
+											>
 												Account settings
 											</Link>
-											<label onMouseUp={modeToggler} className="relative button inline-flex items-center cursor-pointer rounded-none px-0 py-3 w-full">
+											<label
+												onMouseUp={modeToggler}
+												className="relative button inline-flex items-center cursor-pointer rounded-none px-0 py-3 w-full"
+											>
 												<input type="checkbox" value="" defaultChecked={localStorage.theme == "dark"} className="sr-only peer" />
 												<div className="w-11 h-6 bg-charcoal border-2 border-gunmetal/20 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-tiffany dark:peer-focus:ring-tiffany rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-seasalt after:content-[''] after:absolute after:top-[2px] after:ms-4 after:mt-3 after:left-[2px] after:bg-seasalt after:border-seasalt after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-mint"></div>
 												<span className="ml-3 dark:font-medium font-normal">Dark mode</span>
@@ -166,7 +201,7 @@ export default function Navbar() {
 							) : (
 								""
 							)}
-							{!isLoading && !user && !error ? (
+							{!loading && !Object.keys(user).length > 0 ? (
 								<>
 									<Link
 										data-aos-clean

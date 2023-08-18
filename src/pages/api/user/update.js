@@ -5,11 +5,7 @@ export default withApiAuthRequired(async function handler(req, res) {
 	const { user } = await getSession(req, res);
 	try {
 		if (req.method != "POST") throw Error();
-		const access_token = (
-			await axios.post(
-				`${process.env.BASE_URL}/api/token/${process.env.TOKEN_QUERY}`
-			)
-		).data;
+		const access_token = (await axios.post(`${process.env.BASE_URL}/api/token/${process.env.TOKEN_QUERY}`)).data;
 		const fulluser = (
 			await axios
 				.get(`${process.env.AUTH0_AUDIENCE}users/${user.sub}`, {
@@ -21,12 +17,7 @@ export default withApiAuthRequired(async function handler(req, res) {
 		).data;
 		if (
 			fulluser.identities
-				.map((e) =>
-					(e.isSocial && fulluser.user_id.split("|")[0]) ==
-						e.provider || !e.email_verified
-						? 1
-						: 0
-				)
+				.map((e) => ((e.isSocial && fulluser.user_id.split("|")[0] == e.provider) || !fulluser.email_verified ? 1 : 0))
 				.reduce((e, c) => e + c, 0) > 0
 		) {
 			delete req.body?.email;
@@ -36,11 +27,9 @@ export default withApiAuthRequired(async function handler(req, res) {
 			res.status(200).json({});
 			return;
 		}
-		const update = await axios.patch(
-			`${process.env.AUTH0_AUDIENCE}users/${fulluser.user_id}`,
-			finalData,
-			{ headers: { authorization: `Bearer ${access_token}` } }
-		);
+		const update = await axios.patch(`${process.env.AUTH0_AUDIENCE}users/${fulluser.user_id}`, finalData, {
+			headers: { authorization: `Bearer ${access_token}` },
+		});
 		res.status(200).json(update.data);
 		// res.status(200).json(fulluser);
 	} catch (error) {
